@@ -27,6 +27,11 @@ public class InMemoryRepository implements Repository<Entity> {
     }
 
     @Override
+    public void delete(final UUID uuid) {
+        map.remove(uuid);
+    }
+
+    @Override
     public String toString() {
         return "DefaultRepository{" +
                 "map=" + map +

@@ -59,4 +59,22 @@ public class RepositoryTest {
         assertEquals(3, repo.retrieveAllEntities().size());
     }
 
+    @Test
+    public void testDelete() throws Exception {
+
+        repo = new InMemoryRepository();
+        assertEquals(0, repo.retrieveAllEntities().size());
+        final UUID uuid = UUID.randomUUID();
+        final Entity entity = new IdOnlyEntity(uuid);
+
+        repo.put(entity);
+        assertEquals(1, repo.retrieveAllEntities().size());
+        assertEquals(entity, repo.get(uuid));
+
+        repo.delete(uuid);
+        assertEquals(0, repo.retrieveAllEntities().size());
+        assertEquals(null, repo.get(uuid));
+
+    }
+
 }

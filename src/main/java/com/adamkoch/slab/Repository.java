@@ -14,4 +14,6 @@ public interface Repository<T> extends Serializable {
     T get(UUID uuid);
 
     List<Entity> retrieveAllEntities();
+
+    void delete(UUID uuid);
 }
