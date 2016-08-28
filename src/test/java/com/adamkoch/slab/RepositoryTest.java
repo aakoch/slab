@@ -16,24 +16,15 @@ public class RepositoryTest {
 
     @Before
     public void setUp() {
-        repo = new InMemoryRepository();
     }
 
     @Test
     public void testPut() throws Exception {
+        repo = new InMemoryRepository();
         assertEquals(0, repo.retrieveAllEntities().size());
         final UUID uuid = UUID.randomUUID();
-        final Entity entity = new Entity() {
-            @Override
-            public UUID getId() {
-                return uuid;
-            }
+        final Entity entity = new IdOnlyEntity(uuid);
 
-            @Override
-            public void setId(final UUID id) {
-
-            }
-        };
         repo.put(entity);
         assertEquals(1, repo.retrieveAllEntities().size());
         assertEquals(entity, repo.get(uuid));
@@ -41,11 +32,23 @@ public class RepositoryTest {
 
     @Test
     public void testGet() throws Exception {
-        fail("Not implemented yet");
+        repo = new InMemoryRepository();
+        assertEquals(0, repo.retrieveAllEntities().size());
+
+        final UUID uuid = UUID.randomUUID();
+        assertNull("There shouldn't be any entry yet as the repr hasn't been populated", repo.get(uuid));
+
+        final Entity entity = new IdOnlyEntity(uuid);
+
+        repo.put(entity);
+
+        assertEquals(1, repo.retrieveAllEntities().size());
+        assertEquals(entity, repo.get(uuid));
     }
 
     @Test
     public void testRetrieveAllEntities() throws Exception {
         fail("Not implemented yet");
     }
+
 }
