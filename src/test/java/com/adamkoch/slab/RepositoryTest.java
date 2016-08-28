@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.*;
 
@@ -48,7 +49,14 @@ public class RepositoryTest {
 
     @Test
     public void testRetrieveAllEntities() throws Exception {
-        fail("Not implemented yet");
+        repo = new InMemoryRepository();
+        assertEquals(0, repo.retrieveAllEntities().size());
+
+        // Java's closest to Ruby's 3.times ...
+        IntStream.rangeClosed(1, 3)
+                .forEach(unused -> repo.put(new DummyEntity()));
+
+        assertEquals(3, repo.retrieveAllEntities().size());
     }
 
 }
