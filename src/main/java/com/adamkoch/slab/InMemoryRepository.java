@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by Adam on 3/2/2015.
  */
-public class DefaultRepository implements Repository<Entity> {
+public class InMemoryRepository implements Repository<Entity> {
 
     private static final long serialVersionUID = -3359391703624929812L;
 

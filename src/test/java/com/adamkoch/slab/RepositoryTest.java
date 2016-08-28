@@ -16,7 +16,7 @@ public class RepositoryTest {
 
     @Before
     public void setUp() {
-        repo = new DefaultRepository();
+        repo = new InMemoryRepository();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class RepositoryTest {
             }
         };
         repo.put(entity);
-        assertEquals(0, repo.retrieveAllEntities().size());
+        assertEquals(1, repo.retrieveAllEntities().size());
         assertEquals(entity, repo.get(uuid));
     }
 
