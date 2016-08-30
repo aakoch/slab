@@ -13,7 +13,7 @@ public interface Repository<T> extends Serializable {
     void put(T entity);
     T get(UUID uuid);
 
-    List<Entity> retrieveAllEntities();
+    List<T> retrieveAllEntities();
 
     void delete(UUID uuid);
 }

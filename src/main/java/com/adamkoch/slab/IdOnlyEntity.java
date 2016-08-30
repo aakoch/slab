@@ -21,4 +21,19 @@ public class IdOnlyEntity implements Entity {
     public void setId(final UUID id) {
         uuid = id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        IdOnlyEntity that = (IdOnlyEntity) o;
+
+        return uuid != null ? uuid.equals(that.uuid) : that.uuid == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return uuid != null ? uuid.hashCode() : 0;
+    }
 }
