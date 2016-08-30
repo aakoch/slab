@@ -60,7 +60,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void testDelete_whenEntityExists() throws Exception {
 
         repo = new InMemoryRepository();
         assertEquals(0, repo.retrieveAllEntities().size());
@@ -70,6 +70,19 @@ public class RepositoryTest {
         repo.put(entity);
         assertEquals(1, repo.retrieveAllEntities().size());
         assertEquals(entity, repo.get(uuid));
+
+        repo.delete(uuid);
+        assertEquals(0, repo.retrieveAllEntities().size());
+        assertEquals(null, repo.get(uuid));
+
+    }
+
+    @Test
+    public void testDelete_whenEntityDoesNotExist() throws Exception {
+
+        repo = new InMemoryRepository();
+        assertEquals(0, repo.retrieveAllEntities().size());
+        final UUID uuid = UUID.randomUUID();
 
         repo.delete(uuid);
         assertEquals(0, repo.retrieveAllEntities().size());
