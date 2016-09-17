@@ -21,8 +21,11 @@ public class InMemoryRepository<T extends Entity> implements Repository<T> {
         return map.get(uuid);
     }
 
+    /**
+     * Currently returns all entities.
+     */
     @Override
-    public List<T> retrieveAllEntities() {
+    public Collection<T> search(Query query) {
         return new ArrayList<>(map.values());
     }
 
@@ -33,7 +36,7 @@ public class InMemoryRepository<T extends Entity> implements Repository<T> {
 
     @Override
     public String toString() {
-        return "DefaultRepository{" +
+        return "InMemoryRepository{" +
                 "map=" + map +
                 '}';
     }

@@ -1,5 +1,6 @@
 package com.adamkoch.slab;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,8 +26,8 @@ public class PersonRepository implements Repository<Person> {
     }
 
     @Override
-    public List<Person> retrieveAllEntities() {
-        return repository.retrieveAllEntities();
+    public Collection<Person> search(Query query) {
+        return repository.search(query);
     }
 
     @Override
